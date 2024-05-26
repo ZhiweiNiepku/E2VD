@@ -1,0 +1,1 @@
+Please download `RBD_embedding_all_data.npy`, `antibody_heavy_sequence_embedding_all_data.npy`, `antibody_light_sequence_embedding_all_data.npy` here first.
