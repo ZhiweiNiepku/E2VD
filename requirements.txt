@@ -1,0 +1,6 @@
+scikit-learn==1.0.2
+transformers==4.30.2
+numpy
+matplotlib
+pandas
+tqdm
