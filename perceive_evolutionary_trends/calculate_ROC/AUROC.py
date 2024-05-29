@@ -53,4 +53,5 @@ for thre in thres:
 # roc
 plt.plot(fpr, tpr)
 plt.plot([0,1],[0,1],c='orange',linestyle='--')
+plt.savefig('roc.png')
 plt.show()
