@@ -354,7 +354,7 @@ if __name__ == '__main__':
 
     #kf=KFold(n_splits=k,shuffle=True,random_state=27)
     #kf_idx=kf.split(feats,reg_label)
-    kf_idx=MyFold(cls_label,k,100)
+    kf_idx=MyFold(cls_label,k,60)
 
     counter=0
 
