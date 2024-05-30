@@ -51,10 +51,10 @@ It takes only several hours to train on training data, and several seconds to pr
 ## Quick demo for _in silico_ evolution
 
 We provide a quick demo for the _in silico_ evolution on BA.5 lineage.
-Please refer to `examples/E2VD_Evolution_demo.ipynb` for details, or open in colab.
+Please refer to `examples/E2VD_Evolution_demo.ipynb` for details, or open in Colab.
 
 [<img src="https://colab.research.google.com/assets/colab-badge.svg">](https://colab.research.google.com/github/ZhiweiNiepku/E2VD/blob/main/examples/E2VD_Evolution_demo.ipynb)
-
+s
 ## Protein sequence feature extraction
 
 **!! NOTE: We provide the extracted features of the sequences used for experiments at the end of this section. You can use the extracted results directly for downstream applications and skip this section.**
