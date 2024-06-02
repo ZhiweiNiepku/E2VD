@@ -24,6 +24,7 @@ ORANGE2_edge= '#AA8138' #170,129,56
 
 
 
+# figure for old version
 SCATTER=0
 MSIZE=70
 BMSIZE=300
@@ -122,7 +123,7 @@ if SCATTER:
 
 
 
-RADAR2=0
+RADAR2=1
 RSIZE=31
 dpi=500
 figsize=(18,10)
@@ -143,6 +144,7 @@ if RADAR2:
     angles=np.linspace(0, 2*np.pi, n, endpoint=False)
     data=np.concatenate((data, [data[0]]))
     angles=np.concatenate((angles, [angles[0]]))
+    radar_labels=np.concatenate((radar_labels, [radar_labels[0]]))
 
     #fig = plt.figure(facecolor='white', figsize=(15,8))
     #plt.subplot(111, polar=True)
@@ -175,6 +177,7 @@ if RADAR2:
     angles=np.linspace(0, 2*np.pi, n, endpoint=False)
     data=np.concatenate((data, [data[0]]))
     angles=np.concatenate((angles, [angles[0]]))
+    radar_labels=np.concatenate((radar_labels, [radar_labels[0]]))
 
     #fig = plt.figure(facecolor='white', figsize=(15,8))
     #plt.subplot(111, polar=True)
@@ -207,6 +210,7 @@ if RADAR2:
     angles=np.linspace(0, 2*np.pi, n, endpoint=False)
     data=np.concatenate((data, [data[0]]))
     angles=np.concatenate((angles, [angles[0]]))
+    radar_labels=np.concatenate((radar_labels, [radar_labels[0]]))
 
     #fig = plt.figure(facecolor='white', figsize=(15,8))
     #plt.subplot(111, polar=True)
