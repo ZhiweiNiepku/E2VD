@@ -89,7 +89,104 @@ It takes less than 10 minutes to install python dependencies for downstream expe
 # Repo contents
 
 ```shell
-
+- single_site_benchmark/ # experiments of single-site mutation sequences
+	- bind/
+		- baseline-CNN/
+		- E2VD/
+			- data_process/
+				- customize/
+				- ESM1v/
+				- ESM2
+				- T5/
+			- *.py
+	- expr/
+		- baseline-DNAPerceiver/
+		- baseline-UniRep/
+		- E2VD/
+			- customize/
+			- ESM1v/
+			- ESM2/
+			- T5/
+	- escape/
+		- baseline-Escape/
+		- baseline-RBD_AB/
+		- E2VD/
+			- customize/
+			- ESM1v/
+			- ESM2/
+			- T5/
+- LG_MT/ # ablation experiments of LG and MT module
+	- bind_train_5fold*.py
+	- bind_test_5fold.py
+- PCA_visualization/ # PCA visualization of features before and after LG module
+	- bind/
+		- extract_feat_after_LG_bind.py
+		- pca.py
+	- expr/
+	- escape/
+- mine_rare_beneficial_mutation/ # ablation experiments on MT module
+	- BCE_MSE/
+		- bind_train_ablation.py
+		- bind_test_ablation.py
+	- MT/
+		- bind_train.py
+		- bind_test.py
+	- get_data.py
+- generalization_performance/ # generalization performance comparison of different models on binding affinity and expression
+	- bind/
+		- baseline-CNN/
+			- _embedding_train/ # train model with single-site mutation benchmark
+			- data_process/
+			- model/
+			- get_result.py # calculate OPP metrics
+			- predict_RBD_emb_main.py # predict multi-site mutation sequences
+		- E2VD/
+	- expr/
+		- baseline-DNAPerceiver/
+			- _embedding_train/ # train model with single-site mutation benchmark
+			- model/
+			- get_result.py # calculate OPP metrics
+			- predict_RBD_emb_main.py # predict multi-site mutation sequences
+		- baseline-UniRep_ANN/
+		- E2VD/
+- perceive_evolutionary_trends/
+	- calculate_ROC/
+		- AUROC.py # calculate AUC and draw ROC
+	- E2VD/
+		- attributes_train_and_predict/
+			- training/
+				- bind_train/
+				- expression_train/
+				- escape_train/
+			- predicting/
+				- predict_bind_emb_main_pickle.py # use the pretrained model to predict binding affinity
+				- predict_expr_emb_main_pickle.py # use the pretrained model to predict expression
+				- predict_escape_emb_main_pickle.py # use the pretrained model to predict antibody escape
+	- MLAEP/
+		- src/
+		- data/
+		- draw_KL.py
+		- get_seqs.py
+- figure_reproduction/
+	- mine_rare_beneficial_mutation/
+	- MT_loss_ablation/
+	- PCA_visualization/
+	- perceive_evolutionary_trends/
+- pretraining/ # codes for backbone pretraining and feature extracting
+	- src/
+		- bert_model.py # bert model architecture
+		- bert_for_pre_training.py # bert pretraining architecture
+		- dataset.py # dataset loader
+		- ... # other src
+		- model_utils/
+			- device_adapter.py # adapter for distributed training
+			- ... # other utils
+	- run_pretrain.py # bert pretraining main
+	- pretrain_config.yaml # training config
+	- extract_embedding_local.py # feature extracting code for local device
+- demo_bind/
+	- bind_train_5fold.py # quick start for binding affinity training
+	- bind_predict_5fold.py # quick start for binding affinity predicting
 ```
 
 
