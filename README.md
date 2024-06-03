@@ -2,6 +2,13 @@
 
 The official code repository of "E2VD: a unified evolution-driven framework for virus variation drivers prediction".
 
+- [Overview](#overview)
+- [System Requirements](#system-requirements)
+- [Installation Guide](#installation-guide)
+- [Repo contents](#repo-contents)
+- [Demo and Instructions for Use](#demo-and-instructions-for-use)
+- [License](#license)
+
 
 # Overview
 
