@@ -615,3 +615,190 @@ python generalization_performance/bind/baseline-CNN/predict_RBD_emb_main.py
 ```
 
 Calculate OPP metrics for all the sequences as well as the sequences of each lineages.
+
+
+## Perceive evolutionary trends
+
+We perform single-site mutation on BA.5 and XBB.1.5 sequences, and all single-mutation variants are separately predicted for binding affinity, 
+expression, and antibody escape, which are subsequently screened by different predictors.
+
+We perform experiments on E2VD and MLAEP, and calculate the AU-ROC of prediction result to compare the performance.
+
+### E2VD
+
+#### Data Process
+
+- Binding affinity data and expression data
+
+We use the dataset from *Deep mutational scans for ACE2 binding, RBD expression, and antibody escape in the SARS-CoV-2 Omicron BA.1 and BA.2 receptor binding domains*. Use pretrained backbone to extract protein sequence features, or download the extracted results from the table above.
+
+Run the following script to do sequence filtering and to split training and testing sets.
+
+```shell
+cd perceive_evolutionary_trends/E2VD/attributes_train_and_predict/training/
+python data_process_bind_expr.py
+```
+
+- Antibody escape data
+
+The training process here is the same as [Single site benchmark](#single-site-benchmark).
+
+#### Binding affinity and expression
+
+The training and testing process of binding affinity and expression are the same. Take binding affinity as example.
+
+- Training
+
+```shell
+cd perceive_evolutionary_trends/E2VD/attributes_train_and_predict/training/bind_train
+python bind_train_all.py > output_train_all.txt 2>&1
+```
+
+- Predicting
+
+Calculate the statistical data of training features for test feature normalization.
+
+```shell
+cd perceive_evolutionary_trends/E2VD/attributes_train_and_predict/training/bind_train
+python statistic.py
+```
+
+Run the predicting script to do binding affinity prediction. Here we use `.pickle` file as an example to illustrate how to load testing data. Other data formats, such as `.npy`, `.h5`, can also be loaded by adjusting loading code.
+
+```shell
+cd perceive_evolutionary_trends/E2VD/attributes_train_and_predict/predicting
+python predict_bind_emb_main_pickle.py
+```
+
+The predicted results are saved in `.npy` format.
+
+#### Antibody escape
+
+- Training
+
+Training script is the same as `single_site_benchmark/escape/E2VD/customize/`. Please modify the file paths in the code before running the code.
+
+```shell
+# training
+python escape_train.py > output_escape_train.txt 2>&1
+
+# testing
+python escape_predict_csv.py > output_escape_test.txt 2>&1
+```
+
+- Predicting
+
+Calculate the statistical data of training features for test feature normalization, and run the predicting script to do prediction.
+
+```shell
+cd perceive_evolutionary_trends/E2VD/attributes_train_and_predict/predicting
+python predict_escape_emb_main_pickle.py
+```
+
+The predicted results are saved in `.npy` format.
+
+All the predicted results are integrated in `figure_reproduction/perceive_evolutionary_trends/create_draw_predict_data.py` to filter the high-risk sites, which is further discussed in [Figure reproduction](#figure-reproduction).
+
+
+### MLAEP
+
+We calculate the difference of KL-divergence before and after _in silico_ evolution as evolutionary score.
+We use BA.5 as an example.
+
+First get initial sequences for _in silico_ evolution. We listed the variants to use in `get_seqs.py`, which are the same as those in our experiment.
+
+```shell
+cd perceive_evolutionary_trends/MLAEP
+python get_seqs.py
+```
+
+Download the pretrained checkpoint from [MLAEP](https://github.com/WHan-alter/MLAEP/tree/master) into `perceive_evolutionary_trends/MLAEP/trained_model`, 
+and run synthetic code to do _in silico_ evolution.
+
+```shell
+cd perceive_evolutionary_trends/MLAEP
+python ./src/synthetic.py 0.8 data/BA.5_origin.csv result/success_BA5.txt result/failed_BA5.txt
+```
+
+Compare the KL-divergence before and after evolution, and plot the result.
+
+```shell
+cd perceive_evolutionary_trends/MLAEP
+python draw_KL.py
+```
+
+
+### Calculate AU-ROC
+
+For E2VD, screen the sequences with predicted results.
+
+```shell
+python figure_reproduction/perceive_evolutionary_trends/create_draw_predict_data.py
+```
+
+For MLAEP, `draw_KL.py` will output the processed result.
+
+Run the following code to calculate the AU-ROC of the result. Please choose the correponding columns to use for different models.
+
+```shell
+python perceive_evolutionary_trends/calculate_ROC/AUROC.py
+```
+
+
+The drawing of high-risk sites prediction can refer to [Figure reproduction](#figure-reproduction).
+
+
+
+
+
+## Figure reproduction
+
+
+- MT focal learning loss ablation
+
+To reproduce Fig.4c, run the following code:
+
+```shell
+cd figure_reproduction/MT_loss_ablation
+python draw_polar.py
+```
+
+- PCA visualization
+
+For quick visualization of the PCA result, we provide the processed features in `data/PCA_visualization`, including features before LG module, features after LG module, and regression labels. 
+
+Run the following code to draw Fig.4b, Fig.S1a and Fig.S1b.
+
+```shell
+python figure_reproduction/PCA_visualization/draw_decompose_bind.py
+python figure_reproduction/PCA_visualization/draw_decompose_expr.py
+python figure_reproduction/PCA_visualization/draw_decompose_escape.py
+```
+
+- Mine rare beneficial mutation
+
+For quick visualization, we provide our predicted result in `data/mine_rare_beneficial_mutation`.
+
+Run the following code to draw Fig.4d and Fig.S2.
+
+```shell
+python figure_reproduction/mine_rare_beneficial_mutation/draw_scatter.py
+```
+
+- Perceive evolutionary trends
+
+Some of the drawing scripts are from [SARS-CoV-2-reinfection-DMS](https://github.com/jianfcpku/SARS-CoV-2-reinfection-DMS). Thanks for their great work!
+
+1. To draw target curves, run `figure_reproduction/perceive_evolutionary_trends/calculate_preference_target.ipynb` or `calculation/calculate_preference.ipynb` in [SARS-CoV-2-reinfection-DMS](https://github.com/jianfcpku/SARS-CoV-2-reinfection-DMS) to generate tmp files, and run `figure_reproduction/perceive_evolutionary_trends/draw_target.r` to generate predicting target.
+
+2. To draw predicted curves, run `figure_reproduction/perceive_evolutionary_trends/create_draw_predict_data.py` to integrate all the predicted results to filter high-risk mutation sites, and run `figure_reproduction/perceive_evolutionary_trends/draw_predict.r` to generate predicting result.
+
+Here is an example of the comparison between the statistical evolutionary trends and the predicted evolution trends of Omicron BA.5.
+
+![](./media/compare.png)
+
+
+
+# License
+
+This project is covered under the **Apache 2.0 License**.
