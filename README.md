@@ -27,7 +27,7 @@ Overall, E2VD represents a unified, structure-free, and interpretable approach f
 
 ## Hardware requirements
 
-The backbone pretraining and the protein feature extraction (inference on backbone) are conducted on **Ascend-910 (32GB)**.
+The customized protein language model pretraining and the protein feature extraction (inference on our customized protein language model) are conducted on **Ascend-910 (32GB)**.
 
 **!! NOTE: The Ascend NPU environment is only for protein feature extraction. We provide the extracted features of the sequences used for experiments below. You can use the extracted results directly for downstream applications.**
 
@@ -37,13 +37,13 @@ The downstream predictions using extracted features can be conducted on a standa
 
 ### OS Requirements
 
-The backbone pretraining and protein feature extraction (inference on backbone) are conducted on CentOS. **This is not necessary for downstream training and predicting.**
+The customized protein language model pretraining and protein feature extraction (inference on our customized protein language model) are conducted on CentOS. **This is not necessary for downstream training and predicting.**
 
 The downstream experiments are conducted on Ubuntu 16.04.1.
 
 ### Python Dependencies
 
-For the backbone pretraining and protein feature extraction (inference on backbone), the required python environments are as follows.
+For the customized protein language model pretraining and protein feature extraction (inference on top of our customized protein language model), the required python environments are as follows.
 
 **!! NOTE: This environment is only for protein feature extraction. We provide the extracted features of the sequences used for experiments below. You can use the extracted results directly for downstream applications.**
 
@@ -178,7 +178,7 @@ It takes less than 10 minutes to install python dependencies for downstream expe
 	- MT_loss_ablation/
 	- PCA_visualization/
 	- perceive_evolutionary_trends/
-- pretraining/ # codes for backbone pretraining and feature extracting
+- pretraining/ # codes for customized protein language model pretraining and feature extracting
 	- src/
 		- bert_model.py # bert model architecture
 		- bert_for_pre_training.py # bert pretraining architecture
@@ -253,7 +253,7 @@ Please refer to `examples/E2VD_Evolution_demo.ipynb` for details, or open in Col
 
 **!! NOTE: We provide the extracted features of the sequences used for experiments at the end of this section. You can use the extracted results directly for downstream applications and skip this section.**
 
-Use our pretrained backbone to extract feature embeddings of protein sequences for downstream application. The pretrained checkpoint can be downloaded in the table below.
+Use our pretrained customized protein language model to extract feature embeddings of protein sequences for downstream application. The pretrained checkpoint can be downloaded in the table below.
 
 Use `pretraining/extract_embedding_local.py` to extract feature embeddings on your computer or server. Please modify the file path in the code before executing.
 
@@ -295,7 +295,7 @@ For E2VD model, we provide the features extracted by our customized protein lang
 
 - E2VD
 
-Use pretrained backbone to extract protein sequence features, or download the extracted results from the table above.
+Use pretrained customized protein language model to extract protein sequence features, or download the extracted results from the table above.
 
 Training script is `single_site_benchmark/bind/E2VD/bind_train_5fold.py`. Modify the file paths in the code.
 
@@ -365,7 +365,7 @@ python bind_cnn_test.py
 
 - E2VD
 
-Use pretrained backbone to extract protein sequence features, or download the extracted results.
+Use pretrained customized protein language model to extract protein sequence features, or download the extracted results.
 
 Training script is in `single_site_benchmark/expr/E2VD/customize/`. Please modify the file paths in the code before running the code.
 
@@ -418,7 +418,7 @@ python train_rf.py
 
 - E2VD
 
-Use pretrained backbone to extract protein sequence features, or download the extracted results.
+Use pretrained customized protein language model to extract protein sequence features, or download the extracted results.
 
 Training script is in `single_site_benchmark/escape/E2VD/customize/`. Please modify the file paths in the code before running the code.
 
@@ -493,10 +493,10 @@ E2VD can achieve state-of-the-art performance in single-site mutation benchmark 
 We conduct ablation study on Local-Global dependence coupling (LG) and Multi-Task focal learning (MT). 
 We use single-site mutation benchmark of binding affinity as training dataset.
 
-We conduct experiments on different backbones to get a more general result, including our customized backbone, ESM2 and ProtTransT5.
-For each backbone, there are 4 experiments, including model with MT and LG, model with MT, model with LG and model without MT and LG.
+We conduct experiments on different protein language models to get a more general result, including our customized protein language model, ESM2 and ProtTransT5.
+For each protein language model, there are 4 experiments, including model with MT and LG, model with MT, model with LG and model without MT and LG.
 
-Please choose which backbone to use at the beginning of the code.
+Please choose which protein language model to use at the beginning of the code.
 
 ```python
 BACKBONE = 'customize' # 'esm2' # 't5'
@@ -733,7 +733,7 @@ We perform experiments on E2VD and MLAEP, and calculate the AU-ROC of prediction
 
 - Binding affinity data and expression data
 
-We use the dataset from *Deep mutational scans for ACE2 binding, RBD expression, and antibody escape in the SARS-CoV-2 Omicron BA.1 and BA.2 receptor binding domains*. Use pretrained backbone to extract protein sequence features, or download the extracted results from the table above.
+We use the dataset from *Deep mutational scans for ACE2 binding, RBD expression, and antibody escape in the SARS-CoV-2 Omicron BA.1 and BA.2 receptor binding domains*. Use pretrained protein language model to extract protein sequence features, or download the extracted results from the table above.
 
 Run the following script to do sequence filtering and to split training and testing sets.
 
