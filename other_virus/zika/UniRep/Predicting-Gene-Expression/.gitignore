@@ -1,0 +1,6 @@
+*/__*
+*/.*
+.DS_Store
+.vscode
+data/
+output/
