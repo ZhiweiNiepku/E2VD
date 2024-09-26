@@ -822,7 +822,7 @@ We perform experiments on E2VD and MLAEP, and calculate the AU-ROC of prediction
 
 - Binding affinity data and expression data
 
-We use the dataset from *Deep mutational scans for ACE2 binding, RBD expression, and antibody escape in the SARS-CoV-2 Omicron BA.1 and BA.2 receptor binding domains*. Use pretrained protein language model to extract protein sequence features, or download the extracted results from the table above.
+We use the dataset from [*Deep mutational scans for ACE2 binding, RBD expression, and antibody escape in the SARS-CoV-2 Omicron BA.1 and BA.2 receptor binding domains*](https://journals.plos.org/plospathogens/article?id=10.1371/journal.ppat.1010951). Use pretrained protein language model to extract protein sequence features, or download the extracted results from the table above.
 
 Run the following script to do sequence filtering and to split training and testing sets.
 
@@ -943,9 +943,9 @@ The drawing of high-risk sites prediction can refer to [Figure reproduction](#fi
 
 ## Evolutionary Trajectory
 
-We use the binding affinity data and expression data before Omicron to train property prediction models for pre-Omicron variants.
+We use the binding affinity data and expression data before Omicron to train property prediction models for pre-Omicron lineages, and use the data after Omicron to train property prediction models for the sub-lineages of Omicron (same as [*Perceive evolutionary trends*](#perceive-evolutionary-trends)).
 
-We use the dataset from *Deep mutational scans for ACE2 binding, RBD expression, and antibody escape in the SARS-CoV-2 Omicron BA.1 and BA.2 receptor binding domains*. Use pretrained protein language model to extract protein sequence features, or download the extracted results from the table above (EvolutionaryTrajectory).
+We use the dataset from [*Deep mutational scans for ACE2 binding, RBD expression, and antibody escape in the SARS-CoV-2 Omicron BA.1 and BA.2 receptor binding domains*](https://journals.plos.org/plospathogens/article?id=10.1371/journal.ppat.1010951). Use pretrained protein language model to extract protein sequence features, or download the extracted results from the table above (EvolutionaryTrajectory).
 
 The data processing, the training and testing process are the same as `Perceive evolutionary trends` part. Please adjust the path to dataset first.
 
