@@ -12,7 +12,7 @@ The official code repository of "E2VD: a unified evolution-driven framework for 
 
 # Latest Updates
 
-*Sep 25, 2024*: 1. **Generalization on other virus**. Updated codes for three other viruses. 2. **Evolutionary Trajectory**. Updated the training data and checkpoints for property prediction models before Omicron.
+*Sep 25, 2024*: 1. [**Generalization on other virus**](#other-virus). Updated codes for three other viruses. 2. [**Evolutionary Trajectory**](#evolutionary-trajectory). Updated the training data and checkpoints for property prediction models before Omicron.
 
 *Jun 2, 2024*: Updated figure reproduction codes.
 
