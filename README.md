@@ -22,14 +22,8 @@ The official code repository of "E2VD: a unified evolution-driven framework for 
 
 # Overview
 
-The increasing frequency of emerging viral infections necessitates a rapid human response, highlighting the cost-effectiveness of computational methods. 
-However, existing computational approaches are limited by their input forms or incomplete functionalities, preventing a unified prediction of diverse viral variation drivers and hindering in-depth applications.
-To address this issue, we propose a unified evolution-driven framework for predicting virus variation drivers, named E2VD, which is guided by virus evolutionary traits priors.
-With evolution-inspired design, E2VD comprehensively and significantly outperforms state-of-the-art methods across various virus variation drivers prediction tasks.
-Moreover, E2VD effectively captures the fundamental patterns of virus evolution. 
-It not only distinguishes different types of mutations but also accurately identifies rare beneficial mutations that are critical for virus to survival, while maintains generalization capabilities on different viral lineages.
-Importantly, with predicted biological drivers, E2VD perceives virus evolutionary trends, in which potential high-risk mutation sites are accurately recommended.
-Overall, E2VD represents a unified, structure-free, and interpretable approach for analyzing and predicting viral evolutionary fitness, providing an ideal alternative to costly wet-lab measurements to accelerate responses to emerging viral infections.
+The increasing frequency of emerging viral infections necessitates a rapid human response, highlighting the cost-effectiveness of computational methods. However, existing computational approaches are limited by their input forms or incomplete functionalities, preventing a unified prediction of diverse viral variation drivers and hindering in-depth applications. To address this issue, we propose a unified evolution-driven framework for predicting virus variation drivers, named E2VD, which is guided by virus evolutionary traits priors. With evolution-inspired design, E2VD comprehensively and significantly outperforms state-of-the-art methods across various virus variation drivers prediction tasks. Moreover, E2VD effectively captures the fundamental patterns of virus evolution. It not only distinguishes different types of mutations but also accurately identifies rare beneficial mutations that are critical for virus to survive, while maintains generalization capabilities across different lineages of SARS-CoV-2 and different types of viruses. Importantly, with predicted biological drivers, E2VD perceives virus evolutionary trends, in which potential high-risk mutation sites are accurately recommended. Overall, E2VD represents a unified, structure-free, and interpretable approach for analyzing and predicting viral evolutionary fitness, providing an ideal alternative to costly wet-lab measurements to accelerate responses to emerging viral infections.
+
 
 ![overall](./media/overall.png)
 
