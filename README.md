@@ -1,6 +1,6 @@
 # E2VD
 
-The official code repository of "E2VD: a unified evolution-driven framework for virus variation drivers prediction".
+The official code repository of "A unified evolution-driven deep learning framework for virus variation driver prediction" (Nature Machine Intelligence <https://www.nature.com/articles/s42256-024-00966-9>).
 
 - [Latest Updates](#latest-updates)
 - [Overview](#overview)
